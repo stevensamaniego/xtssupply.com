@@ -51,8 +51,36 @@
     }, 3000);
   });
 
+  // --- Animated number counters ---
+  var counters = document.querySelectorAll('.metric__number[data-target]');
+  if ('IntersectionObserver' in window && counters.length) {
+    var counterObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-target'), 10);
+          var duration = 2000;
+          var start = 0;
+          var startTime = null;
+          function animate(ts) {
+            if (!startTime) startTime = ts;
+            var progress = Math.min((ts - startTime) / duration, 1);
+            // Ease out cubic
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(eased * target).toLocaleString();
+            if (progress < 1) requestAnimationFrame(animate);
+            else el.textContent = target.toLocaleString();
+          }
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    counters.forEach(function (c) { counterObserver.observe(c); });
+  }
+
   // --- Smooth reveal on scroll (simple IntersectionObserver) ---
-  var reveals = document.querySelectorAll('.card, .why__item, .stat, .contact__detail');
+  var reveals = document.querySelectorAll('.card, .why__item, .stat, .contact__detail, .metric');
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {

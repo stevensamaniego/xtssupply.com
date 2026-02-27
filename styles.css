@@ -175,6 +175,30 @@ a:hover { color: var(--accent); }
 }
 .stat__label { font-size: .85rem; color: var(--gray-500); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
 
+/* --- Metrics Banner --- */
+.section--dark {
+  background: linear-gradient(135deg, #0a0a0e 0%, #111827 100%);
+  padding: 64px 0;
+}
+.metrics__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+  text-align: center;
+}
+.metric { padding: 12px 0; }
+.metric__number {
+  display: inline; font-size: 2.8rem; font-weight: 800; color: var(--accent);
+  line-height: 1.1;
+}
+.metric__dollar::before { content: '$'; }
+.metric__suffix {
+  font-size: 2.8rem; font-weight: 800; color: var(--accent);
+}
+.metric__label {
+  display: block; font-size: .85rem; color: rgba(255,255,255,.6);
+  font-weight: 500; text-transform: uppercase; letter-spacing: .08em;
+  margin-top: 8px;
+}
+
 /* --- Categories --- */
 .categories__grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
@@ -197,7 +221,24 @@ a:hover { color: var(--accent); }
   font-size: 1.15rem; font-weight: 700; color: var(--navy);
   margin-bottom: 12px;
 }
+.card__market {
+  display: inline-block; font-size: .75rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--blue-mid); background: rgba(37,99,235,.08);
+  padding: 5px 12px; border-radius: 20px; margin-bottom: 16px;
+}
 .card__desc { font-size: .93rem; color: var(--gray-500); line-height: 1.7; }
+.card__highlights {
+  list-style: none; margin-top: 20px; padding-top: 20px;
+  border-top: 1px solid var(--gray-100); text-align: left;
+}
+.card__highlights li {
+  font-size: .87rem; color: var(--gray-700); padding: 6px 0 6px 24px;
+  position: relative; line-height: 1.5;
+}
+.card__highlights li::before {
+  content: '✓'; position: absolute; left: 0; color: var(--accent);
+  font-weight: 700; font-size: .9rem;
+}
 
 /* --- Why Us --- */
 .why__grid {
@@ -284,6 +325,7 @@ a:hover { color: var(--accent); }
 
 /* --- Mobile --- */
 @media (max-width: 900px) {
+  .metrics__grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
   .hero__actions .btn { width: 100%; }
   .about__grid { grid-template-columns: 1fr; }
   .about__stats { grid-template-columns: repeat(3, 1fr); }
