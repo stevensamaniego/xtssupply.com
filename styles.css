@@ -88,6 +88,8 @@ a:hover { color: var(--accent); }
   border-radius: 6px; line-height: 1;
 }
 .nav__company { font-size: .95rem; font-weight: 600; color: var(--white); letter-spacing: .01em; }
+.nav__logo-img { height: 40px; width: auto; }
+.footer__logo-img { height: 36px; width: auto; filter: brightness(0) invert(1); opacity: .85; }
 .nav__links {
   display: flex; align-items: center; gap: 32px; list-style: none;
 }
